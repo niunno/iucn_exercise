@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'it.ovi'
+version '0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.google.http-client/google-http-client
+    compile group: 'com.google.http-client', name: 'google-http-client', version: '1.28.0'
+    // https://mvnrepository.com/artifact/com.google.http-client/google-http-client-jackson2
+    compile group: 'com.google.http-client', name: 'google-http-client-jackson2', version: '1.28.0'
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.4.1")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.1")
+}
