@@ -3,6 +3,9 @@ package it.ovi.iucn_exercise.models;
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
 
+/**
+ * The region JSON from IUCN APIs.
+ */
 public class RegionJson extends GenericJson {
     @Key private String name;
     @Key private String identifier;
