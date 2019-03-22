@@ -6,9 +6,9 @@ import com.google.api.client.util.Key;
 /**
  * The Specie JSON from IUCN APIs.
  */
-public class SpecieJson extends GenericJson {
+public final class SpecieJson extends GenericJson {
     @Key
-    private int taxonid;
+    private long taxonid;
     @Key
     private String kingdom_name;
     @Key
@@ -32,11 +32,35 @@ public class SpecieJson extends GenericJson {
     @Key
     private String category;
 
-    public int getTaxonid() {
+    private String mConservationMeasureTitles;
+
+    public SpecieJson() {
+        mConservationMeasureTitles = "";
+    }
+
+    /**
+     * Sets the conservation measure as a concatenated text of titles.
+     * @param conservationMeasuresJson conservation measure object.
+     */
+    public void setConservationMeasureTitles(ConservationMeasuresJson conservationMeasuresJson) {
+        if (conservationMeasuresJson == null) throw new IllegalArgumentException("conservationMeasuresJson cannot be null");
+        if (taxonid != conservationMeasuresJson.getId()) throw new IllegalArgumentException(
+                "scientific_name e conservationMeasuresJson name are different"
+        );
+
+        StringBuilder sb = new StringBuilder();
+        for (ConservationMeasureJson conservationMeasureJson : conservationMeasuresJson.getResult()) {
+            sb.append(conservationMeasureJson.getTitle());
+        }
+
+        mConservationMeasureTitles = sb.toString();
+    }
+
+    public long getTaxonid() {
         return taxonid;
     }
 
-    public void setTaxonid(int taxonid) {
+    public void setTaxonid(long taxonid) {
         this.taxonid = taxonid;
     }
 
@@ -143,6 +167,7 @@ public class SpecieJson extends GenericJson {
                 ", infra_name='" + infra_name + '\'' +
                 ", population='" + population + '\'' +
                 ", category='" + category + '\'' +
+                ", conservationMeasureTitles='" + mConservationMeasureTitles + '\'' +
                 '}';
     }
 }

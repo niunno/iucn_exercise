@@ -7,9 +7,8 @@ public class ConservationByIdUrl extends TokenUrl {
     /**
      * Init the object.
      * @param specieId specie ID.
-     * @param regionId region ID.
      */
-    public ConservationByIdUrl(String specieId, String regionId) {
-        super(Urls.getConservationByIdUrl(specieId, regionId));
+    public ConservationByIdUrl(long specieId) {
+        super(Urls.getConservationByIdUrl(specieId));
     }
 }

@@ -14,8 +14,8 @@ public class Urls {
             String.format("http://apiv3.iucnredlist.org/api/v3/species/region/%s/page/%s",
                     REGION_ID_PLACEHOLDER, PAGE_PLACEHOLDER);
     private static final String CONSERVATION_BY_ID_URL =
-            String.format("http://apiv3.iucnredlist.org/api/v3/measures/species/id/%s/region/%s?token='YOUR TOKEN'",
-                    SPECIE_ID_PLACEHOLDER, REGION_ID_PLACEHOLDER);
+            String.format("http://apiv3.iucnredlist.org/api/v3/measures/species/id/%s",
+                    SPECIE_ID_PLACEHOLDER);
 
     /**
      * Returns the Species-by-region URL.
@@ -37,17 +37,11 @@ public class Urls {
     /**
      * Returns the conservation by ID URL.
      * @param specieId the specie ID.
-     * @param regionId the region ID.
      * @return the URL.
      */
     @NotNull
-    @Contract("null, _ -> fail; !null, null -> fail")
-    public static String getConservationByIdUrl(String specieId, String regionId) {
-        if (specieId == null) throw new IllegalArgumentException("specieId must not be null");
-        if (regionId == null) throw new IllegalArgumentException("regionId must not be null");
-
+    public static String getConservationByIdUrl(long specieId) {
         return CONSERVATION_BY_ID_URL
-                .replace(SPECIE_ID_PLACEHOLDER, specieId)
-                .replace(REGION_ID_PLACEHOLDER, regionId);
+                .replace(SPECIE_ID_PLACEHOLDER, Long.toString(specieId));
     }
 }

@@ -9,14 +9,14 @@ import java.util.List;
  * The JSON Region list by IUCN APIs.
  */
 public class RegionsJson extends GenericJson {
-    @Key private int count;
+    @Key private long count;
     @Key private List<RegionJson> results;
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         this.count = count;
     }
 
